@@ -1,0 +1,47 @@
+<!doctype html><html lang="ar"><head><meta charset="utf-8"><style>
+@font-face{font-family:Thm;font-weight:900;src:url(../engine/fonts/thmanyah-black.otf)}
+@font-face{font-family:Thm;font-weight:700;src:url(../engine/fonts/thmanyah-bold.otf)}
+@font-face{font-family:Thm;font-weight:500;src:url(../engine/fonts/thmanyah-medium.otf)}
+:root{--teal:#0a6660;--teal2:#0a8f84;--amber:#fbb01b;--orange:#f47c20;--ink:#0d3b38;--muted:#6b8a87;--line:#e7eceb}
+*{margin:0;padding:0;box-sizing:border-box}body{font-family:Thm;color:var(--ink);background:#fff}
+.grid{position:absolute;inset:0;background-image:linear-gradient(var(--line) 2px,transparent 2px),linear-gradient(90deg,var(--line) 2px,transparent 2px);opacity:.6}
+.glow{position:absolute;border-radius:50%;background:radial-gradient(closest-side,rgba(251,176,27,.22),transparent)}
+.hx{position:absolute;opacity:.9}
+/* banner */
+#banner{position:relative;width:1584px;height:396px;overflow:hidden;display:none}
+#banner .grid{background-size:66px 66px}
+#banner .txt{position:absolute;right:80px;top:0;bottom:0;display:flex;flex-direction:column;justify-content:center;direction:rtl}
+#banner .s{font:500 36px Thm;color:var(--muted)}
+#banner .b{font:900 68px/1.3 Thm}#banner .b em{font-style:normal;color:var(--orange)}
+#banner .tags{display:flex;gap:14px;margin-top:18px}
+.tag{font:700 28px Thm;padding:8px 22px;border-radius:40px;background:#fff;border:3px solid var(--line)}
+.tag.on{background:var(--teal);color:#fff;border-color:var(--teal)}
+#banner .logo{position:absolute;left:90px;top:56px;height:130px}
+#banner .bar{position:absolute;bottom:0;left:0;right:0;height:12px;background:linear-gradient(270deg,var(--teal2),var(--amber),var(--orange))}
+/* post */
+#post{position:relative;width:1200px;height:1200px;overflow:hidden;display:none}
+#post .grid{background-size:100px 100px}
+#post .top{position:absolute;top:60px;left:70px;right:70px;display:flex;justify-content:space-between;align-items:center;direction:rtl}
+#post .top img{height:96px}#post .top span{font:700 34px Thm;color:var(--muted)}
+#post .mid{position:absolute;top:200px;left:70px;right:70px;text-align:center;direction:rtl}
+#post .s{font:500 52px Thm;color:var(--muted)}
+#post .b{font:900 94px/1.3 Thm;margin-top:6px}#post .b em{font-style:normal;color:var(--orange)}
+#post .cards{position:absolute;top:610px;left:90px;right:90px;display:flex;flex-direction:column;gap:22px;direction:rtl}
+.card{background:#fff;border:3px solid var(--line);border-radius:34px;box-shadow:0 24px 60px rgba(13,59,56,.10);padding:22px 34px;display:flex;align-items:center;gap:24px;font:700 46px Thm}
+.card .n{width:72px;height:72px;border-radius:22px;background:var(--amber);display:flex;align-items:center;justify-content:center;font:900 40px Thm;flex:none}
+#post .foot{position:absolute;bottom:60px;left:70px;right:70px;display:flex;justify-content:space-between;align-items:center;direction:rtl;font:700 36px Thm;color:var(--muted)}
+#post .foot b{color:#fff;background:var(--teal);padding:14px 34px;border-radius:40px;direction:ltr}
+#post .bar{position:absolute;bottom:0;left:0;right:0;height:14px;background:linear-gradient(270deg,var(--teal2),var(--amber),var(--orange))}
+</style></head><body>
+<div id="banner"><div class="grid"></div><div class="glow" style="width:900px;height:700px;right:-150px;top:-200px"></div>
+ <img class="logo" src="../engine/logo_h.png">
+ <div class="txt"><div class="s">منصة ترس السعودية</div><div class="b">نوضّح لك <em>سوق التوظيف</em><br>من الداخل</div>
+  <div class="tags"><span class="tag on">نصائح يومية</span><span class="tag">السيرة الذاتية</span><span class="tag">المقابلات</span><span class="tag">الرواتب</span></div></div>
+ <div class="bar"></div></div>
+<div id="post"><div class="grid"></div><div class="glow" style="width:1300px;height:900px;left:-50px;top:80px"></div>
+ <div class="top"><img src="../engine/logo_h.png"><span>سلسلة سوق التوظيف</span></div>
+ <div class="mid"><div class="s">كل يوم ٣ حلقات</div><div class="b">الأشياء اللي <em>ما يقولونها</em><br>عن التوظيف</div></div>
+ <div class="cards"><div class="card"><span class="n">1</span>ليش ما ردوا على تقديمك؟</div><div class="card"><span class="n">2</span>كم تطلب راتب بدون ما تخسر؟</div><div class="card"><span class="n">3</span>وش يصير لسيرتك بعد التقديم؟</div></div>
+ <div class="foot"><span>تابعنا على تيك توك</span><b>@taras_saudi</b></div><div class="bar"></div></div>
+<script>function show(id){document.getElementById(id).style.display='block'}</script>
+</body></html>
