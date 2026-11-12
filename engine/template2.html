@@ -40,7 +40,7 @@ html,body{width:1080px;height:1920px;overflow:hidden;position:relative;backgroun
 .cmp{display:flex;gap:34px;width:960px;direction:rtl}
 .cmp .card{width:auto;flex:1;padding:44px 40px;min-height:520px}
 .cmp .good{border-color:var(--teal2);box-shadow:0 40px 90px rgba(10,143,132,.22)}
-.cmp .h{font:900 58px Thm;margin-bottom:26px}
+.cmp .h{font:900 50px Thm;margin-bottom:26px;white-space:nowrap}
 .cmp .bad .h{color:var(--orange)}.cmp .good .h{color:var(--teal2)}
 .cmp .t{font:700 58px/1.55 Thm}
 .cmp .bad .t{color:#8aa1a0;text-decoration:line-through;text-decoration-color:rgba(244,124,32,.6);text-decoration-thickness:5px}
@@ -101,7 +101,7 @@ function setup(d){
     if(s.type==='hook'||s.type==='why'){h=s.big_visual?`<div class="bigword">${s.big_visual}</div>`:hexHTML(`<div class="em">${s.emoji||'💡'}</div>`)}
     if(s.type==='steps'){h=`<div class="card"><div class="ctitle"><span class="dot"></span>${s.title||'الخطوات'}</div>${s.items.map((x,i)=>`<div class="row"><div class="i n">${i+1}</div><div>${x}</div></div>`).join('')}</div>`}
     if(s.type==='list'){h=`<div class="card">${s.title?`<div class="ctitle"><span class="dot"></span>${s.title}</div>`:''}${s.items.map(rowHTML).join('')}</div>`}
-    if(s.type==='compare'){h=`<div class="cmp"><div class="card bad"><div class="h">✕ الغلط</div><div class="t">${s.bad}</div></div><div class="card good"><div class="h">✓ الصح</div><div class="t">${s.good}</div></div></div>`}
+    if(s.type==='compare'){h=`<div class="cmp"><div class="card bad"><div class="h">✕ ${s.badLabel||'الغلط'}</div><div class="t">${s.bad}</div></div><div class="card good"><div class="h">✓ ${s.goodLabel||'الصح'}</div><div class="t">${s.good}</div></div></div>`}
     if(s.type==='comment'){h=`<div class="card cbox"><div class="ctitle"><span class="dot"></span>التعليقات</div><div class="lst"><div class="cm" style="opacity:0"><div class="av"></div><div>${s.word}</div><div class="heart">❤️</div></div></div><div class="inp"><div class="send"></div><div class="tx"></div><span class="caret"></span><span class="ph">أضف تعليق...</span></div></div>`}
     if(s.type==='follow'){h=`<div class="fol"><div class="btns"><div class="ib sv">${ICON.save}</div><div class="ib sh">${ICON.share}</div></div><div class="card prof"><img src="logo_icon_t.png"><div><div class="nm">منصة ترس</div><div class="sb">نصائح توظيف يومية</div></div><div class="fb">متابعة</div></div></div>`}
     el.innerHTML=h;
@@ -123,7 +123,10 @@ function setup(d){
 let cur=-1;
 function headFor(s){
   $('#small').textContent=s.small; $('#big').innerHTML=words(s.big);
-  fit($('#small'),62,40,940); fit($('#big'),128,70,950);
+  fit($('#small'),62,40,940);
+  const bg=$('#big'); bg.style.whiteSpace='nowrap'; bg.style.lineHeight='1.45';
+  if(fit(bg,128,70,950)<100){bg.style.whiteSpace='normal';bg.style.textWrap='balance';bg.style.lineHeight='1.35';bg.style.fontSize='100px';
+    let f=100; while(f>72&&bg.scrollHeight>300){f-=4;bg.style.fontSize=f+'px';}}
 }
 function render(t){
   let k=S.findIndex(s=>t>=s.a&&t<s.b); if(k<0)k=S.length-1;
