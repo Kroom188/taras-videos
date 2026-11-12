@@ -12,7 +12,7 @@ const {chromium}=require('playwright');const {spawn}=require('child_process');co
    '-c:v','libx264','-preset','medium','-crf','20','-pix_fmt','yuv420p','-c:a','aac','-movflags','+faststart',out]);
   for(let i=0;i<n;i++){ await p.evaluate(t=>render(t),i/fps); const buf=await p.screenshot({type:'jpeg',quality:92}); if(!ff.stdin.write(buf)) await new Promise(r=>ff.stdin.once('drain',r)); }
   ff.stdin.end(); await new Promise(r=>ff.on('close',r));
-  for(const s of [1.5,7,12,15.5]){await p.evaluate(t=>render(t),s);await p.screenshot({path:path.join(outDir,`frame_${d.id}_${s}.png`)});}
+  if(process.env.PREVIEW) for(const s of [1.5,7,12,15.5]){await p.evaluate(t=>render(t),s);await p.screenshot({path:path.join(outDir,`frame_${d.id}_${s}.png`)});}
   console.log('done',out);
  }
  await b.close();
