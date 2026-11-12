@@ -3,14 +3,17 @@
 Every run produces **5 new videos for the NEXT day** (Asia/Riyadh) and schedules them on TikTok through Metricool.
 
 ## Steps
-1. `cd engine && npm install` (fonts only — REQUIRED, without it the Arabic font silently falls back and the video looks broken). Playwright + Chromium are preinstalled — do not install them.
+1. Fonts: the template uses Thmanyah Serif Text from `engine/fonts/` (thmanyah-black.otf, thmanyah-bold.otf, thmanyah-medium.otf). These files are NOT in git (licence). If they are missing, STOP and report it — do not render with a fallback font.
+   `cd engine && npm install` (fonts only — REQUIRED, without it the Arabic font silently falls back and the video looks broken). Playwright + Chromium are preinstalled — do not install them.
 2. Pick the topic: next item in `engine/topics.json` → `rotation` after the last `history` entry's topic (wrap around).
    Read all past `titles` for that topic in `history` and do NOT repeat an idea.
 3. Write `engine/content-YYYY-MM-DD.json` (date = the publish day) — an array of 5 items with the exact shape of `engine/content-2026-11-12.json`:
    - `id` "01".."05", `tag` "<topic> | n/5", `palette` 3 hex colours (vary per video), `duration` 17
-   - `hook` ≤ 2 short lines (use `<br>`), punchy Saudi dialect + 1 emoji
+   - Typography is line-based: every `<br>` is a hard line and each line is auto-sized to fill the width, so WRITE SHORT LINES.
+   - `hook` exactly 2 lines: line 1 = 1–2 words (shown huge with amber marker), line 2 = 2–4 words + 1 emoji
    - `emoji` one emoji, `big` short number/word or "" (keep ≤ 10 chars)
-   - `fact` ≤ 16 words; wrap highlighted words in `*...*` (a highlight may span words: `*كلمة كلمة*`); no HTML in `fact`
+   - `fact` 2–3 lines separated by `<br>`, 2–4 words per line; wrap highlighted words in `*...*`; no other HTML.
+     Keep Latin text (file names, English words) as ONE token without spaces (e.g. `*cv_final2.pdf*`) or it renders in the wrong order
    - `detail` 2–3 lines separated by `<br>`; each line is shown as its own row in a white card, so every line must be a complete standalone point (never split one sentence across lines). Start a line with ✅ or ❌ to get a green check / orange cross icon; a line ending in `:` becomes the card heading. Use `<b>` for emphasis
    - `palette` is ignored by the current brand template (keep it for compatibility)
    - `cta` 2 short lines (follow / save / comment / share; the 5th video teases tomorrow's topic)

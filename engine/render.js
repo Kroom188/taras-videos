@@ -3,7 +3,7 @@ const {chromium}=require('playwright');const {spawn}=require('child_process');co
  const [,,dataFile,outDir,only]=process.argv; const items=JSON.parse(fs.readFileSync(dataFile));
  fs.mkdirSync(outDir,{recursive:true});
  const b=await chromium.launch(); const p=await b.newPage({viewport:{width:1080,height:1920}});
- await p.goto('file://'+path.resolve(__dirname,'template.html')); await p.evaluate(()=>document.fonts.ready);
+ await p.goto('file://'+path.resolve(__dirname,'template.html'));await p.evaluate(()=>Promise.all(['900','700','500'].map(w=>document.fonts.load(w+' 40px Thm','سيرة abc 123')))); await p.evaluate(()=>document.fonts.ready);
  for(const d of items){ if(only&&d.id!==only)continue;
   await p.evaluate(d=>setup(d),d); await p.evaluate(()=>document.fonts.ready);
   const fps=30,n=d.duration*fps,out=path.join(outDir,`video_${d.id}.mp4`);
