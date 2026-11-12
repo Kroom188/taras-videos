@@ -19,6 +19,7 @@ body{width:1200px;height:1200px;overflow:hidden;position:relative;background:#ff
 .row+.row{border-top:3px dashed var(--line)}
 .ic{flex:none;width:84px;height:84px;border-radius:26px;background:var(--teal2);display:flex;align-items:center;justify-content:center;font-size:44px;font-family:"Noto Color Emoji"}
 .ic.a{background:#fff3db}.ic.b{background:#e3f4f2}.ic.c{background:#fde9d9}
+.card.cmp .row{padding:11px 0;font-size:42px}.card.cmp .ic{width:72px;height:72px;font-size:38px}.card.cmp .row small{font-size:30px}
 .row small{display:block;font:500 34px Thm;color:var(--muted)}
 .apply{position:absolute;bottom:70px;left:70px;right:70px;display:flex;align-items:center;justify-content:space-between}
 .apply .l{font:700 40px Thm;color:var(--muted)}
@@ -31,6 +32,6 @@ body{width:1200px;height:1200px;overflow:hidden;position:relative;background:#ff
 <div class="apply"><span class="l">للتقديم</span><span class="u" id="u"></span></div><div class="bar"></div>
 <script>
 function setup(d){document.getElementById('s').textContent=d.sub;document.getElementById('t').innerHTML=d.title;document.getElementById('u').textContent=d.url;
-document.getElementById('rows').innerHTML=d.rows.map(r=>`<div class="row"><div class="ic ${r.c}">${r.i}</div><div>${r.v}<small>${r.k}</small></div></div>`).join('');
+document.getElementById('rows').classList.toggle('cmp',d.rows.length>3);document.getElementById('rows').innerHTML=d.rows.map(r=>`<div class="row"><div class="ic ${r.c}">${r.i}</div><div>${r.v}<small>${r.k}</small></div></div>`).join('');
 const t=document.getElementById('t');let f=112;t.style.fontSize=f+'px';while(f>70&&t.scrollHeight>160){f-=4;t.style.fontSize=f+'px';}}
 </script></body></html>
