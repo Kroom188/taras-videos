@@ -3,7 +3,7 @@
 Every run produces **5 new videos for the NEXT day** (Asia/Riyadh) and schedules them on TikTok through Metricool.
 
 ## Steps
-1. `cd engine && npm install` (fonts only). Playwright + Chromium are preinstalled — do not install them.
+1. `cd engine && npm install` (fonts only — REQUIRED, without it the Arabic font silently falls back and the video looks broken). Playwright + Chromium are preinstalled — do not install them.
 2. Pick the topic: next item in `engine/topics.json` → `rotation` after the last `history` entry's topic (wrap around).
    Read all past `titles` for that topic in `history` and do NOT repeat an idea.
 3. Write `engine/content-YYYY-MM-DD.json` (date = the publish day) — an array of 5 items with the exact shape of `engine/content-2026-11-12.json`:
@@ -11,13 +11,14 @@ Every run produces **5 new videos for the NEXT day** (Asia/Riyadh) and schedules
    - `hook` ≤ 2 short lines (use `<br>`), punchy Saudi dialect + 1 emoji
    - `emoji` one emoji, `big` short number/word or "" (keep ≤ 10 chars)
    - `fact` ≤ 16 words; wrap highlighted words in `*...*` (a highlight may span words: `*كلمة كلمة*`); no HTML in `fact`
-   - `detail` ≤ 3 short lines with `<br>` and `<b>` for emphasis
+   - `detail` 2–3 lines separated by `<br>`; each line is shown as its own row in a white card, so every line must be a complete standalone point (never split one sentence across lines). Start a line with ✅ or ❌ to get a green check / orange cross icon; a line ending in `:` becomes the card heading. Use `<b>` for emphasis
+   - `palette` is ignored by the current brand template (keep it for compatibility)
    - `cta` 2 short lines (follow / save / comment / share; the 5th video teases tomorrow's topic)
    - `caption` ≤ 150 chars, 1 line + 5–6 hashtags incl. #وظائف #توظيف #اكسبلور
    Content rules: Saudi dialect, practical job-search advice for the Saudi/Gulf market. Only state facts you are sure of;
    prefer actionable advice over statistics. Never invent numbers, company names or quotes.
 4. Render: `PREVIEW=1 node engine/render.js engine/content-YYYY-MM-DD.json videos/YYYY-MM-DD` (≈2 min/video).
-   Open the preview PNGs and check text fits, nothing overflows/overlaps, Arabic shapes correctly. Fix the JSON and re-render any bad video.
+   Quick stills: `node engine/preview.js engine/content-YYYY-MM-DD.json /tmp/prev` makes one contact sheet per video. Open the preview PNGs and check text fits, nothing overflows/overlaps, Arabic shapes correctly. Fix the JSON and re-render any bad video.
    Delete the PNGs before committing.
 5. Append the day to `history` in `engine/topics.json`, commit, and push to `main`
    (git user `Kroom188 <Kroom188@users.noreply.github.com>`).
