@@ -1,0 +1,36 @@
+<!doctype html><html lang="ar"><head><meta charset="utf-8"><style>
+@font-face{font-family:Thm;font-weight:900;src:url(../engine/fonts/thmanyah-black.otf)}
+@font-face{font-family:Thm;font-weight:700;src:url(../engine/fonts/thmanyah-bold.otf)}
+@font-face{font-family:Thm;font-weight:500;src:url(../engine/fonts/thmanyah-medium.otf)}
+:root{--teal:#0a6660;--teal2:#0a8f84;--amber:#fbb01b;--orange:#f47c20;--ink:#0d3b38;--muted:#6b8a87;--line:#e7eceb}
+*{margin:0;padding:0;box-sizing:border-box}
+body{width:1200px;height:1200px;overflow:hidden;position:relative;background:#fff;font-family:Thm;color:var(--ink);direction:rtl}
+.grid{position:absolute;inset:0;background-image:linear-gradient(var(--line) 2px,transparent 2px),linear-gradient(90deg,var(--line) 2px,transparent 2px);background-size:100px 100px;opacity:.6}
+.glow{position:absolute;width:1300px;height:900px;left:-50px;top:60px;border-radius:50%;background:radial-gradient(closest-side,rgba(251,176,27,.2),transparent)}
+.top{position:absolute;top:60px;left:70px;right:70px;display:flex;justify-content:space-between;align-items:center}
+.top img{height:96px}
+.badge{font:900 40px Thm;color:#fff;background:var(--orange);padding:12px 34px;border-radius:40px}
+.mid{position:absolute;top:190px;left:70px;right:70px;text-align:center}
+.s{font:500 50px Thm;color:var(--muted)}
+.t{font:900 112px/1.25 Thm;color:var(--ink);margin-top:6px}
+.t em{font-style:normal;color:var(--teal2)}
+.card{position:absolute;top:440px;left:90px;right:90px;background:#fff;border:3px solid var(--line);border-radius:44px;box-shadow:0 30px 70px rgba(13,59,56,.12);padding:20px 46px;border-top:14px solid var(--amber)}
+.row{display:flex;align-items:center;gap:28px;padding:18px 0;font:700 44px/1.4 Thm}
+.row+.row{border-top:3px dashed var(--line)}
+.ic{flex:none;width:84px;height:84px;border-radius:26px;background:var(--teal2);display:flex;align-items:center;justify-content:center;font-size:44px;font-family:"Noto Color Emoji"}
+.ic.a{background:#fff3db}.ic.b{background:#e3f4f2}.ic.c{background:#fde9d9}
+.row small{display:block;font:500 34px Thm;color:var(--muted)}
+.apply{position:absolute;bottom:70px;left:70px;right:70px;display:flex;align-items:center;justify-content:space-between}
+.apply .l{font:700 40px Thm;color:var(--muted)}
+.apply .u{font:900 54px Thm;color:#fff;background:var(--teal);padding:18px 46px;border-radius:50px;direction:ltr}
+.bar{position:absolute;bottom:0;left:0;right:0;height:14px;background:linear-gradient(270deg,var(--teal2),var(--amber),var(--orange))}
+</style></head><body><div class="grid"></div><div class="glow"></div>
+<div class="top"><img src="../engine/logo_h.png"><span class="badge">فرصة وظيفية</span></div>
+<div class="mid"><div class="s" id="s"></div><div class="t" id="t"></div></div>
+<div class="card" id="rows"></div>
+<div class="apply"><span class="l">للتقديم</span><span class="u" id="u"></span></div><div class="bar"></div>
+<script>
+function setup(d){document.getElementById('s').textContent=d.sub;document.getElementById('t').innerHTML=d.title;document.getElementById('u').textContent=d.url;
+document.getElementById('rows').innerHTML=d.rows.map(r=>`<div class="row"><div class="ic ${r.c}">${r.i}</div><div>${r.v}<small>${r.k}</small></div></div>`).join('');
+const t=document.getElementById('t');let f=112;t.style.fontSize=f+'px';while(f>70&&t.scrollHeight>160){f-=4;t.style.fontSize=f+'px';}}
+</script></body></html>
