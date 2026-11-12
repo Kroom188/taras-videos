@@ -17,7 +17,10 @@ Every run produces **5 new videos for the NEXT day** (Asia/Riyadh) and schedules
    - `caption` ≤ 150 chars, 1 line + 5–6 hashtags incl. #وظائف #توظيف #اكسبلور
    Content rules: Saudi dialect, practical job-search advice for the Saudi/Gulf market. Only state facts you are sure of;
    prefer actionable advice over statistics. Never invent numbers, company names or quotes.
-4. Render: `PREVIEW=1 node engine/render.js engine/content-YYYY-MM-DD.json videos/YYYY-MM-DD` (≈2 min/video).
+4. Audio then render:
+   `python3 engine/audio.py engine/content-YYYY-MM-DD.json videos/YYYY-MM-DD` (music + SFX synced to the template timeline, writes audio_NN.wav)
+   `PREVIEW=1 node engine/render.js engine/content-YYYY-MM-DD.json videos/YYYY-MM-DD` (≈2 min/video; picks up audio_NN.wav automatically).
+   Delete the audio_NN.wav files before committing (keep only the mp4s).
    Quick stills: `node engine/preview.js engine/content-YYYY-MM-DD.json /tmp/prev` makes one contact sheet per video. Open the preview PNGs and check text fits, nothing overflows/overlaps, Arabic shapes correctly. Fix the JSON and re-render any bad video.
    Delete the PNGs before committing.
 5. Append the day to `history` in `engine/topics.json`, commit, and push to `main`

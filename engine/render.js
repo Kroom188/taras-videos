@@ -8,7 +8,7 @@ const {chromium}=require('playwright');const {spawn}=require('child_process');co
   await p.evaluate(d=>setup(d),d); await p.evaluate(()=>document.fonts.ready);
   const fps=30,n=d.duration*fps,out=path.join(outDir,`video_${d.id}.mp4`);
   const ff=spawn('ffmpeg',['-y','-loglevel','error','-f','image2pipe','-framerate',''+fps,'-i','-',
-   '-i',path.join(__dirname,'bg_music.wav'),'-shortest',
+   '-i',(fs.existsSync(path.join(outDir,`audio_${d.id}.wav`))?path.join(outDir,`audio_${d.id}.wav`):path.join(__dirname,'bg_music.wav')),'-shortest',
    '-c:v','libx264','-preset','medium','-crf','20','-pix_fmt','yuv420p','-c:a','aac','-movflags','+faststart',out]);
   for(let i=0;i<n;i++){ await p.evaluate(t=>render(t),i/fps); const buf=await p.screenshot({type:'jpeg',quality:92}); if(!ff.stdin.write(buf)) await new Promise(r=>ff.stdin.once('drain',r)); }
   ff.stdin.end(); await new Promise(r=>ff.on('close',r));
