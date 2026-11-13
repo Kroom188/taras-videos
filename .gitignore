@@ -1,2 +1,5 @@
 node_modules/
 engine/fonts/
+engine/_cairo_*.html
+*.mp4.wav
+*.mp4.events.json
