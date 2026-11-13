@@ -4,7 +4,7 @@ const {chromium}=require('playwright');const {spawn,execFileSync}=require('child
  const [,,dataFile,outDir,only]=process.argv; const items=JSON.parse(fs.readFileSync(dataFile));
  fs.mkdirSync(outDir,{recursive:true});
  const b=await chromium.launch(); const p=await b.newPage({viewport:{width:1080,height:1920}});
- await p.goto('file://'+path.resolve(__dirname,'template2.html'));
+ const TPL=require('./fontswap')('template2.html'); await p.goto(TPL.url);
  await p.evaluate(()=>Promise.all(['900','700','500'].map(w=>document.fonts.load(w+' 40px Thm','سيرة abc 123'))));
  for(const d of items){ if(only&&d.id!==only)continue;
   await p.evaluate(d=>setup(d),d);
@@ -19,5 +19,5 @@ const {chromium}=require('playwright');const {spawn,execFileSync}=require('child
   ff.stdin.end(); await new Promise(r=>ff.on('close',r)); fs.unlinkSync(evf); fs.unlinkSync(wav);
   console.log('done',out,DUR.toFixed(1)+'s');
  }
- await b.close();
+ await b.close(); TPL.cleanup();
 })();
