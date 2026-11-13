@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="ar" dir="ltr">
+<head>
+<meta charset="utf-8">
+<style>
+@font-face{font-family:Thm;font-weight:900;src:url(fonts/thmanyah-black.otf)}
+@font-face{font-family:Thm;font-weight:700;src:url(fonts/thmanyah-bold.otf)}
+@font-face{font-family:Thm;font-weight:500;src:url(fonts/thmanyah-medium.otf)}
+:root{--teal:#0a6660;--teal2:#0a8f84;--mint:#3fd2c0;--amber:#fbb01b;--orange:#f47c20;--ink:#0d3b38;--deep:#061a19}
+*{margin:0;padding:0;box-sizing:border-box}
+/* YouTube channel art: 2560x1440. Safe area for every device: 1546x423 centred (x 507-2053, y 508-931). */
+html,body{width:2560px;height:1440px;overflow:hidden;font-family:Thm,sans-serif;color:#fff;background:var(--deep)}
+#bg{position:absolute;inset:0;background:radial-gradient(ellipse 70% 60% at 50% 50%,#12524c 0%,#0a3a36 45%,#061a19 100%)}
+.blob{position:absolute;border-radius:50%;filter:blur(140px)}
+#grid{position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.06) 2px,transparent 2px),linear-gradient(90deg,rgba(255,255,255,.06) 2px,transparent 2px);background-size:96px 96px;background-position:-16px -8px;-webkit-mask-image:radial-gradient(ellipse 60% 70% at 50% 50%,#000 30%,transparent 85%);mask-image:radial-gradient(ellipse 60% 70% at 50% 50%,#000 30%,transparent 85%)}
+.hex{position:absolute;opacity:.18}
+.orb{position:absolute;width:150px;height:150px;border-radius:44px;display:flex;align-items:center;justify-content:center;font-size:80px;background:rgba(255,255,255,.1);border:2px solid rgba(255,255,255,.22);box-shadow:0 20px 50px rgba(0,0,0,.35)}
+#bar{position:absolute;left:0;right:0;bottom:0;height:18px;background:linear-gradient(270deg,var(--mint),var(--amber),var(--orange))}
+/* safe area content */
+#safe{position:absolute;left:507px;top:508px;width:1546px;height:423px;display:flex;align-items:center;justify-content:space-between;direction:rtl;padding:0 30px}
+#txt{display:flex;flex-direction:column;gap:14px}
+#kick{display:inline-flex;align-self:flex-start;align-items:center;gap:12px;font:900 38px Thm;color:var(--ink);background:var(--amber);padding:8px 28px;border-radius:50px}
+#head{font:900 104px/1.25 Thm;white-space:nowrap}
+#head em{font-style:normal;color:var(--amber);text-shadow:0 0 40px rgba(251,176,27,.45)}
+#chips{display:flex;gap:16px;margin-top:6px}
+.chip{display:inline-flex;align-items:center;gap:10px;font:700 36px Thm;padding:10px 26px;border-radius:50px;background:rgba(255,255,255,.12);border:2px solid rgba(255,255,255,.28);white-space:nowrap}
+#brand{display:flex;flex-direction:column;align-items:center;gap:22px}
+#disc{width:250px;height:250px;border-radius:50%;background:#fff;display:flex;align-items:center;justify-content:center;box-shadow:0 0 0 12px rgba(251,176,27,.95),0 0 90px rgba(251,176,27,.45),0 30px 70px rgba(0,0,0,.45)}
+#disc img{width:150px}
+#sched{font:900 34px Thm;color:#fff;background:rgba(255,255,255,.12);border:2px solid rgba(255,255,255,.28);padding:8px 26px;border-radius:50px;white-space:nowrap;direction:rtl}
+#sched b{color:var(--amber)}
+/* guides (only for the preview) */
+body.guides #g1,body.guides #g2{display:block}
+#g1,#g2{display:none;position:absolute;border:6px dashed;pointer-events:none}
+#g1{left:507px;top:508px;width:1546px;height:423px;border-color:#ff3366}
+#g2{left:0;top:509px;width:2560px;height:423px;border-color:#33ccff}
+</style>
+</head>
+<body>
+<div id="bg"></div>
+<div class="blob" style="width:900px;height:900px;left:-150px;top:-200px;background:#0a8f84;opacity:.45"></div>
+<div class="blob" style="width:800px;height:800px;right:-100px;bottom:-250px;background:#f47c20;opacity:.28"></div>
+<div class="blob" style="width:700px;height:500px;left:900px;top:430px;background:#fbb01b;opacity:.12"></div>
+<div id="grid"></div>
+<svg class="hex" style="left:120px;top:180px;width:360px" viewBox="0 0 330 370"><path d="M165 12 L312 96 L312 274 L165 358 L18 274 L18 96 Z" fill="none" stroke="#fbb01b" stroke-width="14"/></svg>
+<svg class="hex" style="right:160px;top:120px;width:260px" viewBox="0 0 330 370"><path d="M165 12 L312 96 L312 274 L165 358 L18 274 L18 96 Z" fill="none" stroke="#3fd2c0" stroke-width="14"/></svg>
+<svg class="hex" style="left:260px;bottom:110px;width:220px" viewBox="0 0 330 370"><path d="M165 12 L312 96 L312 274 L165 358 L18 274 L18 96 Z" fill="none" stroke="#3fd2c0" stroke-width="14"/></svg>
+<svg class="hex" style="right:300px;bottom:150px;width:340px" viewBox="0 0 330 370"><path d="M165 12 L312 96 L312 274 L165 358 L18 274 L18 96 Z" fill="none" stroke="#fbb01b" stroke-width="14"/></svg>
+<div class="orb" style="left:300px;top:640px;transform:rotate(-10deg)">💼</div>
+<div class="orb" style="left:2110px;top:640px;transform:rotate(8deg)">🎓</div>
+<div class="orb" style="left:1080px;top:200px;transform:rotate(6deg);width:120px;height:120px;font-size:64px">📍</div>
+<div class="orb" style="left:1400px;top:1110px;transform:rotate(-6deg);width:120px;height:120px;font-size:64px">🚀</div>
+
+<div id="safe">
+ <div id="txt">
+  <span id="kick">منصة ترس السعودية 🇸🇦</span>
+  <div id="head">وظائف وتدريب <em>أول بأول</em></div>
+  <div id="chips"><span class="chip">💻 عن بعد</span><span class="chip">🏢 حضوري</span><span class="chip">🎓 تدريب تعاوني</span><span class="chip">💡 نصائح يومية</span></div>
+ </div>
+ <div id="brand"><div id="disc"><img src="logo_icon_t.png"></div><div id="sched">فيديوهات <b>كل يوم</b></div></div>
+</div>
+<div id="bar"></div>
+<div id="g1"></div><div id="g2"></div>
+<script>
+// shrink headline/chips if they would overflow the safe area
+function fitAll(){const s=document.getElementById('safe'),t=document.getElementById('txt'),h=document.getElementById('head');let f=104;
+  while(f>70&&(t.offsetWidth+document.getElementById('brand').offsetWidth+80>s.clientWidth)){f-=4;h.style.fontSize=f+'px'}}
+window.fitAll=fitAll;
+</script>
+</body>
+</html>
