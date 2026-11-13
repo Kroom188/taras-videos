@@ -12,10 +12,10 @@ const {chromium}=require('playwright');const {spawn,execFileSync}=require('child
   const evf=path.join(outDir,`events_${d.id}.json`), wav=path.join(outDir,`audio_${d.id}.wav`);
   fs.writeFileSync(evf,JSON.stringify({duration:DUR,events:EV}));
   execFileSync('python3',[path.join(__dirname,'audio2.py'),evf,wav]);
-  const fps=30,n=Math.ceil(DUR*fps),out=path.join(outDir,`video_${d.id}.mp4`);
+  const COVER_T=1.3; /* frames before this show the fully revealed hook so the TikTok cover (frame 0) shows the title */ const fps=30,n=Math.ceil(DUR*fps),out=path.join(outDir,`video_${d.id}.mp4`);
   const ff=spawn('ffmpeg',['-y','-loglevel','error','-f','image2pipe','-framerate',''+fps,'-i','-','-i',wav,'-shortest',
    '-c:v','libx264','-preset','medium','-crf','20','-pix_fmt','yuv420p','-c:a','aac','-b:a','160k','-movflags','+faststart',out]);
-  for(let i=0;i<n;i++){ await p.evaluate(t=>render(t),i/fps); const buf=await p.screenshot({type:'jpeg',quality:92}); if(!ff.stdin.write(buf)) await new Promise(r=>ff.stdin.once('drain',r)); }
+  for(let i=0;i<n;i++){ await p.evaluate(t=>render(t),Math.max(i/fps,COVER_T)); const buf=await p.screenshot({type:'jpeg',quality:92}); if(!ff.stdin.write(buf)) await new Promise(r=>ff.stdin.once('drain',r)); }
   ff.stdin.end(); await new Promise(r=>ff.on('close',r)); fs.unlinkSync(evf); fs.unlinkSync(wav);
   console.log('done',out,DUR.toFixed(1)+'s');
  }
